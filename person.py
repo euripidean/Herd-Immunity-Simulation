@@ -8,10 +8,18 @@ class Person(object):
     def __init__(self, _id, is_vaccinated, infection = None):
         # A person has an id, is_vaccinated and possibly an infection
         self._id = _id  # int
-        # TODO Define the other attributes of a person here
-        pass
+        self.is_vaccinated = is_vaccinated
+        self.infection = infection
+        self.is_alive = self.did_survive_infection()
 
     def did_survive_infection(self):
+        if self.infection != None:
+            check_survival = random.randint(0.0,1.0)
+            if check_survival < self.infection:
+                return False
+            else:
+                self.is_vaccinated = True
+                return True
         # This method checks if a person survived an infection. 
         # TODO Only called if infection attribute is not None.
         # Check generate a random number between 0.0 - 1.0
@@ -27,13 +35,17 @@ if __name__ == "__main__":
     # TODO Define a vaccinated person and check their attributes
     vaccinated_person = Person(1, True)
     assert vaccinated_person._id == 1
-    assert vaccinated_person.is_alive is True
+    assert vaccinated_person.did_survive_infection is True
     assert vaccinated_person.is_vaccinated is True
     assert vaccinated_person.infection is None
 
     # Create an unvaccinated person and test their attributes
     unvaccinated_person = Person(2, False)
     # TODO Test unvaccinated_person's attributes here...
+    assert unvaccinated_person._id == 2
+    assert vaccinated_person.did_survive_infection is True
+    assert vaccinated_person.is_vaccinated is False
+    assert vaccinated_person.infection is None
 
     # Test an infected person. An infected person has an infection/virus
     # Create a Virus object to give a Person object an infection
