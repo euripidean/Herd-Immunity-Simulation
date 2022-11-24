@@ -20,15 +20,7 @@ class Person(object):
             else:
                 self.is_vaccinated = True
                 return True
-        # This method checks if a person survived an infection. 
-        # TODO Only called if infection attribute is not None.
-        # Check generate a random number between 0.0 - 1.0
-        # If the number is less than the mortality rate of the 
-        # person's infection they have passed away. 
-        # Otherwise they have survived infection and they are now vaccinated. 
-        # Set their properties to show this
-        # TODO: The method Should return a Boolean showing if they survived.
-        pass
+        return True
 
 if __name__ == "__main__":
     # This section is incomplete finish it and use it to test your Person class
