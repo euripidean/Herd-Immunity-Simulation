@@ -10,12 +10,13 @@ class Person(object):
         self._id = _id  # int
         self.is_vaccinated = is_vaccinated
         self.infection = infection
-        self.is_alive = self.did_survive_infection()
+        # self.survived = self.did_survive_infection() NEED TO SWAP THIS BACK OUT LATER
+        self.survived = True
 
     def did_survive_infection(self):
         if self.infection != None:
             check_survival = random.randint(0.0,1.0)
-            if check_survival < self.infection:
+            if check_survival < self.infection.mortality_rate:
                 return False
             else:
                 self.is_vaccinated = True
@@ -23,6 +24,8 @@ class Person(object):
         return True
 
 if __name__ == "__main__":
+    #This is all just testing.
+
     # This section is incomplete finish it and use it to test your Person class
     # TODO Define a vaccinated person and check their attributes
     vaccinated_person = Person(1, True)
@@ -66,7 +69,7 @@ if __name__ == "__main__":
 
     # Count the people that survived and did not survive: 
    
-    # did_survived = 0
+    # did_survive = 0
     # did_not_survive = 0
 
     # TODO Loop over all of the people 
