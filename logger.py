@@ -39,33 +39,37 @@ class Logger(object):
     #     \t Infected Person {infected_person._id} interacted with Person Id: {random_person._id}\n 
     #     Outcome: {outcome}""")
 
-    def interaction_summary(self, time_step, number_of_interactions, number_of_new_infections, outcomes):
+    def interaction_summary(self, time_step, number_of_interactions, number_of_new_infections, outcomes, infected_people):
         design = '*' * 40
         f = open(self.file_name, 'a')
         f.write(f"""
         {design}
         INTERACTION SUMMARY:\n
         Time Step: {time_step}\n
-        Number of Interactions: {number_of_interactions}\n
-        New Infection %: {number_of_new_infections}\n
-        Interaction but vaccinated %: {round(outcomes[0]/number_of_interactions,2)}%\n
-        Interaction but already infected %: {round(outcomes[1]/number_of_interactions,2)}%\n
-        Interaction but did not get infected %: {round(outcomes[2]/number_of_interactions,2)}%\n
+        Number of Interactions : {number_of_interactions}\n
+        Number of infected people: {infected_people}\n
+        New Infections : {number_of_new_infections}\n
+        Vaccinated/Infected Interaction : {round(outcomes[0]/number_of_interactions,2)*100}%\n
+        Unvaccinated but no infection after Interaction : {round(outcomes[1]/number_of_interactions,2)*100}%\n
         """)
 
-    def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
+    def log_infection_survival(self, step_number, population_count, number_of_new_fatalities, newly_vaccinated, total_vaccinated, original_pop):
+        design = '-' * 40
         f = open(self.file_name, 'a')
-        f.write(f"""Inside Log Infection Survival""")
-
+        f.write(f"""
+        {design}
+        Step Number {step_number}\n
+        Current population count = {population_count}\n
+        Number of new fatalities = {number_of_new_fatalities}\n
+        Number of infected survivors = {newly_vaccinated}\n
+        Total Vaccinated: {total_vaccinated}\n
+        Total Fatalities: {original_pop - population_count}""")
 
     def send_final_data(self):
+        print('Final outcome.')
         pass
 
-    def log_time_step(self, time_step_number):
-        f = open(self.file_name, 'a')
-        f.write(f"TIME STEP: {time_step_number}")
-        pass
-
-
-test = Logger('test_file')
-test.write_metadata(5000,15,'COVID-19',0.01,3)
+    # def log_time_step(self, time_step_number):
+    #     f = open(self.file_name, 'a')
+    #     f.write(f"TIME STEP: {time_step_number}")
+    #     pass

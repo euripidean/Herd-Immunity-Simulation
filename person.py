@@ -7,7 +7,6 @@ class Person(object):
         self._id = _id  # int
         self.is_vaccinated = is_vaccinated
         self.infection = infection
-        self.survived = self.did_survive_infection()
 
     def did_survive_infection(self):
         """Checks if person survives infection"""
@@ -17,5 +16,29 @@ class Person(object):
                 return False
             else:
                 self.is_vaccinated = True
-                self.infection = None
                 return True
+
+virus = Virus('Ebola', 0.25,0.6)
+
+people = []
+
+for i in range(1, 1000):
+    person = Person(i,False,virus)
+    people.append(person)
+
+# Now that you have a list of 100 people. Resolve whether the Person 
+# survives the infection or not by looping over the people list. 
+
+did_survive = 0
+died = 0
+
+for person in people:
+    # For each person call that person's did_survive_infection method
+    survived = person.did_survive_infection()
+    if survived:
+        did_survive += 1
+    else:
+        died += 1
+
+print(f"Died: {died} | Survived: {did_survive}") 
+

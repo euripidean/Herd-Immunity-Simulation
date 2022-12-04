@@ -1,0 +1,92 @@
+
+        Population: 250	
+        Vaccination %: 0.4	
+        Virus Name: NEW VIRUS	
+        Mortality Rate: 0.6	
+        R Number: 0.25	
+        Initial Infected: 1
+
+        ****************************************
+        INTERACTION SUMMARY:
+
+        Time Step: 1
+
+        Number of Interactions : 100
+
+        Number of infected people: []
+
+        New Infections : 12
+
+        Vaccinated/Infected Interaction : 38.0%
+
+        Unvaccinated but no infection after Interaction : 50.0%
+
+        
+        ----------------------------------------
+        Step Number 1
+
+        Current population count = 242
+
+        Number of new fatalities = 8
+
+        Number of infected survivors = 4
+
+        Total Vaccinated: 103
+
+        Total Fatalities: 8
+        ****************************************
+        INTERACTION SUMMARY:
+
+        Time Step: 2
+
+        Number of Interactions : 500
+
+        Number of infected people: []
+
+        New Infections : 70
+
+        Vaccinated/Infected Interaction : 43.0%
+
+        Unvaccinated but no infection after Interaction : 43.0%
+
+        
+        ----------------------------------------
+        Step Number 2
+
+        Current population count = 199
+
+        Number of new fatalities = 43
+
+        Number of infected survivors = 27
+
+        Total Vaccinated: 130
+
+        Total Fatalities: 51
+        ****************************************
+        INTERACTION SUMMARY:
+
+        Time Step: 3
+
+        Number of Interactions : 2500
+
+        Number of infected people: []
+
+        New Infections : 226
+
+        Vaccinated/Infected Interaction : 62.0%
+
+        Unvaccinated but no infection after Interaction : 28.999999999999996%
+
+        
+        ----------------------------------------
+        Step Number 3
+
+        Current population count = 62
+
+        Number of new fatalities = 137
+
+        Number of infected survivors = 89
+
+        Total Vaccinated: 219
+
+        Total Fatalities: 188
