@@ -18,7 +18,7 @@ class Simulation(object):
         self.original_population = 0
         self.vaccinated = []
         self.fatalities = []
-        self.outcomes = []
+        self.outcomes = 0
         self.total_interactions = 0
 
     def _create_population(self):
@@ -83,15 +83,10 @@ class Simulation(object):
             initial_infected)
 
         #Run while simulation should continue
-        should_continue_loop = 0
         while should_continue:
-            print(f"--------------------------------------------------------------------------------------")
             self.time_step_number += 1
             self.time_step()
             should_continue = self._simulation_should_continue()
-            should_continue_loop += 1
-
-        print(f"End of simulation. Remaining population: {self.pop_size} Number dead: {len(self.fatalities)} Number Vaccinated: {len(self.vaccinated)}\n")
             
         #Send over final data after simulation has completed
         self.logger.send_final_data(self.time_step_number, self.original_population, self.pop_size, self.fatalities, self.vaccinated, self.outcomes, self.total_interactions)
@@ -130,7 +125,6 @@ class Simulation(object):
                 self.interaction(number_of_infected, random_person, outcomes)
                 #remove random person from people list temporarily so they can't interact twice in one loop
                 #update simulation outcome tracker
-                self.outcomes += outcomes
                 self.people.pop(self.people.index(random_person))
                 #add them to the random people list for reintegration with population at the end of the loop
                 random_people.append(random_person)
@@ -156,6 +150,7 @@ class Simulation(object):
         """Each interaction between infected and random person"""
         if random_person.is_vaccinated or random_person.infection is not None:
                 outcomes[0] += 1
+                self.outcomes += 1
                 return
         else:
             gets_infected = random.random()
@@ -180,15 +175,12 @@ class Simulation(object):
             for person in self.people:
                 if person._id == identify:
                     person.infection = self.virus
-                    print(f"{person._id} has been given the virus")
                     #check infection outcome
                     survived = person.did_survive_infection()
             if survived:
-                print(f"{person._id} survived and is now vaccinated")
                 vaccinated_count += 1
                 self.vaccinated.append(person)
             else:
-                print(f"{person._id} died")
                 fatality_count += 1
                 self.pop_size -= 1
                 self.fatalities.append(person)
@@ -214,9 +206,9 @@ class Simulation(object):
 if __name__ == "__main__":
     # Test your simulation here
     # Set some values used by the simulation
-    pop_size = 15000
-    vacc_percentage = 0.1
-    initial_infected = 4
+    pop_size = 10000
+    vacc_percentage = 0.8
+    initial_infected = 5
 
     # Make a new instance of the imulation
     virus = Virus('Lassa Fever', 0.6,0.4)

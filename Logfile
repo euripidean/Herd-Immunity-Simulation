@@ -1,0 +1,137 @@
+ Population: 10000	Vaccination %: 0.8	 Virus Name: Lassa Fever	Mortality Rate: 0.4	R Number: 0.6	Initial Infected: 5
+
+        ****************************************
+        INTERACTION SUMMARY:
+
+        Time Step: 1
+
+        Number of Interactions : 500
+
+        Number of infected people in population: 5
+
+        New Infections : 70
+
+        Immune Interaction : 77.0%
+
+        Unvaccinated but no infection after Interaction : 9.0%
+
+        
+        ----------------------------------------
+        Step Number 1
+
+        Current population count = 9967
+
+        Number of new fatalities = 33
+
+        Number of infected survivors = 37
+
+        Total Immune: 8038
+
+        Total Fatalities: 33
+
+        ****************************************
+        INTERACTION SUMMARY:
+
+        Time Step: 2
+
+        Number of Interactions : 7400
+
+        Number of infected people in population: 74
+
+        New Infections : 691
+
+        Immune Interaction : 81.0%
+
+        Unvaccinated but no infection after Interaction : 8.0%
+
+        
+        ----------------------------------------
+        Step Number 2
+
+        Current population count = 9693
+
+        Number of new fatalities = 274
+
+        Number of infected survivors = 417
+
+        Total Immune: 8455
+
+        Total Fatalities: 307
+
+        ****************************************
+        INTERACTION SUMMARY:
+
+        Time Step: 3
+
+        Number of Interactions : 76400
+
+        Number of infected people in population: 764
+
+        New Infections : 1225
+
+        Immune Interaction : 88.0%
+
+        Unvaccinated but no infection after Interaction : 5.0%
+
+        
+        ----------------------------------------
+        Step Number 3
+
+        Current population count = 9222
+
+        Number of new fatalities = 471
+
+        Number of infected survivors = 754
+
+        Total Immune: 9209
+
+        Total Fatalities: 778
+
+        ****************************************
+        INTERACTION SUMMARY:
+
+        Time Step: 4
+
+        Number of Interactions : 198800
+
+        Number of infected people in population: 1988
+
+        New Infections : 13
+
+        Immune Interaction : 100.0%
+
+        Unvaccinated but no infection after Interaction : 0.0%
+
+        
+        ----------------------------------------
+        Step Number 4
+
+        Current population count = 9215
+
+        Number of new fatalities = 7
+
+        Number of infected survivors = 6
+
+        Total Immune: 9215
+
+        Total Fatalities: 785
+
+        ########################################
+        SIMULATION COMPLETE: FINAL SUMMARY
+
+        Total number of steps in simulation: 4
+
+        % of Population that survived: 92.15 %
+
+        % of Population Fatalities: 7.85%
+
+        % of Population that was infected: 20.04%
+
+        Total Number of interactions where vaccination/immunity prevented infection: 271833 out of 283100 interactions.
+ 
+        Total Fatalities: 785
+
+        Total Immune by end of Simulation: 9215
+
+        ########################################
+        

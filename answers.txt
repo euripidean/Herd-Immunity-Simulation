@@ -1,15 +1,18 @@
 What were the inputs you gave the simulation? (Population size, percent vaccinated, virus name, mortality rate, reproductive rate)
-Population Size: 25000
-Percent Vaccinated: 10%
+Population Size: 10000
+Percent Vaccinated: 80%
 Virus Name: 'Lassa Fever'
 Mortality Rate: 40%
 Repro-Rate: 60%
 
 
 What percentage of the population became infected at some point before the virus burned out?
+20.04%
 
 
 What percentage of the population died from the virus?
+7.85%
 
 
 Out of all interactions sick individuals had during the entire simulation, how many times, in total, did a vaccination save someone from potentially becoming infected?
+271833 out of 283100 interactions
