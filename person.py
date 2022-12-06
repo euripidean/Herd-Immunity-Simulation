@@ -7,6 +7,8 @@ class Person(object):
         self._id = _id  # int
         self.is_vaccinated = is_vaccinated
         self.infection = infection
+        #Note: the instructions didn't include is_alive as a person attribute so my solution was developed without it. 
+        #Instead I move the person to the fatalities list if they pass away.
 
     def did_survive_infection(self):
         """Checks if person survives infection"""
@@ -18,27 +20,25 @@ class Person(object):
                 self.is_vaccinated = True
                 return True
 
-virus = Virus('Ebola', 0.25,0.6)
+if __name__ == "__main__":
+   #Test 1
+    vaccinated_person = Person(1, True)
+    assert vaccinated_person._id == 1
+    assert vaccinated_person.is_vaccinated is True
+    assert vaccinated_person.infection is None
 
-people = []
+    # Test 2
+    unvaccinated_person = Person(2, False)
+    assert unvaccinated_person._id == 2
+    assert unvaccinated_person.is_vaccinated is False
+    assert unvaccinated_person.infection is None
 
-for i in range(1, 1000):
-    person = Person(i,False,virus)
-    people.append(person)
+    # Test 3
+    virus = Virus("Dysentery", 0.7, 0.2)
+    infected_person = Person(3, False, virus)
+    assert infected_person._id == 3
+    assert infected_person.is_vaccinated is False
+    assert infected_person.infection is virus
 
-# Now that you have a list of 100 people. Resolve whether the Person 
-# survives the infection or not by looping over the people list. 
-
-did_survive = 0
-died = 0
-
-for person in people:
-    # For each person call that person's did_survive_infection method
-    survived = person.did_survive_infection()
-    if survived:
-        did_survive += 1
-    else:
-        died += 1
-
-print(f"Died: {died} | Survived: {did_survive}") 
+    
 

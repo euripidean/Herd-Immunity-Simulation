@@ -35,8 +35,20 @@ class Logger(object):
         Total Immune: {total_vaccinated}\n
         Total Fatalities: {original_pop - population_count}\n""")
 
-    def send_final_data(self, step_number, original_pop, pop_size, fatalities, vaccinated):
+    def send_final_data(self, step_number, original_pop, pop_size, fatalities_list, vaccinated_list, outcomes_list, total_interactions):
         design = '#' * 40
+        total_infected = 0
+        fatalities = len(fatalities_list)
+        vaccinated = len(vaccinated_list)
+        #Find total infected:
+        for person in fatalities_list:
+            total_infected += 1
+
+        for person in vaccinated_list:
+            if person.infection is not None:
+                total_infected += 1
+
+
         if pop_size > 0:
             survivors = f"{(pop_size/original_pop) * 100} %"
         else:
@@ -47,6 +59,9 @@ class Logger(object):
         SIMULATION COMPLETE: FINAL SUMMARY\n
         Total number of steps in simulation: {step_number}\n
         % of Population that survived: {survivors}\n
+        % of Population Fatalities: {(fatalities/original_pop)*100}%\n
+        % of Population that was infected: {(total_infected/original_pop) *100}%\n
+        Total Number of interactions where vaccination/immunity prevented infection: {outcomes_list[0]} out of {total_interactions} interactions.\n 
         Total Fatalities: {fatalities}\n
         Total Immune by end of Simulation: {vaccinated}\n
         {design}

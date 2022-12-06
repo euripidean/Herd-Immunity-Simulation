@@ -18,6 +18,8 @@ class Simulation(object):
         self.original_population = 0
         self.vaccinated = []
         self.fatalities = []
+        self.outcomes = []
+        self.total_interactions = 0
 
     def _create_population(self):
         """Method to create population - infected and uninfected"""
@@ -92,7 +94,7 @@ class Simulation(object):
         print(f"End of simulation. Remaining population: {self.pop_size} Number dead: {len(self.fatalities)} Number Vaccinated: {len(self.vaccinated)}\n")
             
         #Send over final data after simulation has completed
-        self.logger.send_final_data(self.time_step_number, self.original_population, self.pop_size, len(self.fatalities), len(self.vaccinated))
+        self.logger.send_final_data(self.time_step_number, self.original_population, self.pop_size, self.fatalities, self.vaccinated, self.outcomes, self.total_interactions)
         
 
     def time_step(self):
@@ -111,7 +113,6 @@ class Simulation(object):
                 infected_people.append(person)
                 number_of_infected += 1
 
-        infection_handling = 0
         while len(infected_people) > 0:
             #Get first infected person in list
             infected_person = infected_people[0]
@@ -128,6 +129,8 @@ class Simulation(object):
                 interactions += 1
                 self.interaction(number_of_infected, random_person, outcomes)
                 #remove random person from people list temporarily so they can't interact twice in one loop
+                #update simulation outcome tracker
+                self.outcomes += outcomes
                 self.people.pop(self.people.index(random_person))
                 #add them to the random people list for reintegration with population at the end of the loop
                 random_people.append(random_person)
@@ -141,6 +144,8 @@ class Simulation(object):
             infected_people.pop(0)
 
         #END OF TIME STEP
+        #add step's interactions to total
+        self.total_interactions += interactions
         #Summarise interactions
         self.logger.interaction_summary(self.time_step_number, interactions, len(self.newly_infected), outcomes, number_of_infected)
         #Now infect newly infected people
@@ -209,12 +214,12 @@ class Simulation(object):
 if __name__ == "__main__":
     # Test your simulation here
     # Set some values used by the simulation
-    pop_size = 100000
-    vacc_percentage = 0.9
+    pop_size = 15000
+    vacc_percentage = 0.1
     initial_infected = 4
 
     # Make a new instance of the imulation
-    virus = Virus('Ebola',0.25,0.7)
+    virus = Virus('Lassa Fever', 0.6,0.4)
     sim = Simulation(virus,pop_size,vacc_percentage,initial_infected)
 
     sim._create_population()
