@@ -1,12 +1,30 @@
 import random, math
+import argparse
 from person import Person
 from logger import Logger
 from virus import Virus
 
+parser = argparse.ArgumentParser(description='Runs Pandemic Simulation')
+
+parser.add_argument('pop_size', metavar='population size', type=int, help='Enter the population size')
+parser.add_argument('vacc_percentage', metavar='vacc_percentage', type=float, help='Enter the vaccination percentage')
+parser.add_argument('virus_name', metavar='virus', type=str, help='Enter the virus name')
+parser.add_argument('virus_repro', metavar='virus_repro', type=float, help='Enter the virus reproduction rate')
+parser.add_argument('virus_mortality', metavar='virus_mortality', type=float, help='Enter the virus mortality rate')
+parser.add_argument('initial_infected', metavar='initial_infected', type=int, help='Enter the number initially infected')
+
+args = parser.parse_args()
+
+virus_name = args.virus_name
+virus_repro = args.virus_repro
+virus_mortality = args.virus_mortality
+pop_size = args.pop_size
+vacc_percentage = args.vacc_percentage
+initial_infected = args.initial_infected
 
 class Simulation(object):
     """Simulation Object"""
-    def __init__(self, virus, pop_size, vacc_percentage, initial_infected=1):
+    def __init__(self, virus, pop_size, vacc_percentage, initial_infected):
         self.virus = virus
         self.pop_size = pop_size
         vacc_percentage = vacc_percentage
@@ -202,18 +220,23 @@ class Simulation(object):
         self.newly_infected = []
         return
 
+virus = Virus(virus_name,virus_mortality, virus_repro)
+simulation = Simulation(virus, pop_size, vacc_percentage, initial_infected)
+simulation._create_population()
+simulation.run()
 
-if __name__ == "__main__":
-    # Test your simulation here
-    # Set some values used by the simulation
-    pop_size = 10000
-    vacc_percentage = 0.8
-    initial_infected = 5
 
-    # Make a new instance of the imulation
-    virus = Virus('Lassa Fever', 0.6,0.4)
-    sim = Simulation(virus,pop_size,vacc_percentage,initial_infected)
+# if __name__ == "__main__":
+#     # Test your simulation here
+#     # Set some values used by the simulation
+#     pop_size = 10000
+#     vacc_percentage = 0.8
+#     initial_infected = 5
 
-    sim._create_population()
-    sim.run()
+#     # Make a new instance of the imulation
+#     virus = Virus('Lassa Fever', 0.6,0.4)
+#     sim = Simulation(virus,pop_size,vacc_percentage,initial_infected)
+
+#     sim._create_population()
+#     sim.run()
 

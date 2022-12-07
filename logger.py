@@ -1,3 +1,4 @@
+from datetime import date
 class Logger(object):
     def __init__(self, file_name):
         self.file_name = file_name
@@ -5,9 +6,9 @@ class Logger(object):
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num, initial_infected):
-
+        sim_date = date.today()
         f = open(self.file_name, 'a')
-        f.write(f""" Population: {pop_size}\tVaccination %: {vacc_percentage}\t Virus Name: {virus_name}\tMortality Rate: {mortality_rate}\tR Number: {basic_repro_num}\tInitial Infected: {initial_infected}\n""")
+        f.write(f""" Population: {pop_size}\tVaccination %: {vacc_percentage}\t Virus Name: {virus_name}\tMortality Rate: {mortality_rate}\tR Number: {basic_repro_num}\tInitial Infected: {initial_infected}\t Simulation Date: {sim_date}\n""")
 
     def interaction_summary(self, time_step, number_of_interactions, number_of_new_infections, outcomes, infected_people):
         design = '*' * 40
@@ -33,7 +34,8 @@ class Logger(object):
         Number of new fatalities = {number_of_new_fatalities}\n
         Number of infected survivors = {newly_vaccinated}\n
         Total Immune: {total_vaccinated}\n
-        Total Fatalities: {original_pop - population_count}\n""")
+        Total Fatalities: {original_pop - population_count}\n
+        """)
 
     def send_final_data(self, step_number, original_pop, pop_size, fatalities_list, vaccinated_list, sim_outcome, total_interactions):
         design = '#' * 40
