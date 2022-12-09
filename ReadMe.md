@@ -1,6 +1,7 @@
 # Final Project: Herd Immunity Simulation
 
-
+## The Project
+A simuation that allows the user to test pandemic outcomes based on criteria such as population size, %of population vaccinated, virus r number and mortality rate. The simulation will output an outcome, along with all steps taken during interactions between infected and non-infected members of the population.
 
 ## How to Run
 $git python3 simulation.py
