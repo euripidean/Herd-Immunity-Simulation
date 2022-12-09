@@ -3,21 +3,16 @@
 
 
 ## How to Run
-
+$git python3 simulation.py
+And then enter the values as prompted by arg parser.
 
 ## Notes on Logic
-
-
+- When the population is created, it's necessary to set the intially infected as 'vaccinated' in order for successful burn out of the virus.
+- Because of the create_population() method, it's also best not to have self._survives() run as the Person objects are instantiated as the initially infected may not survive being created, which means the rest of the expected results would be altered. Instead, I chose to run this method during the interactions.
+- In terms of calculating the number of fatalities/vaccinated I chose to append these People to new lists as part of the process, as the instructions in some places referred to having an is_alive attribute and in other places didn't (I assume the assignment was re-written post COVID and some stuff was accidentally left in, but deleted elsewhere. Understandable!) 
 
 ## Learning
+- Use a log file for outputs was very cool!
+- Having a more complex program makes testing and finding errors much more difficult
 
 
-
-### Answers
-
-Once you have successfully run a simulation, use your python skills to **analyze the simulation results**:
-
-1. What were the **inputs** you gave the simulation? (Population size, percent vaccinated, virus name, mortality rate, reproductive rate)
-2. What percentage of the population became **infected** at some point before the virus burned out?
-3. What percentage of the population **died** from the virus?
-4. Out of all interactions sick individuals had during the entire simulation, **how many times, in total, did a vaccination save someone from potentially becoming infected**?
